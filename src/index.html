@@ -7,85 +7,184 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mac Calculator</title>
         <link rel="stylesheet" href="../dist/output.css">
-        <script src="../javascript/style.js"></script>
+        <script defer src="../javascript/script.js"></script>
     </head>
 
-    <body class="w-screen h-screen">
-        <div class="w-max flex flex-col border border-zinc-400 rounded-lg text-white bg-zinc-800 overflow-hidden">
+    <body class="w-screen h-screen relative overflow-hidden">
+        <div class="w-min flex flex-col border border-zinc-400 border rounded-lg text-white bg-zinc-800 overflow-hidden absolute"
+            id="calculator">
             <!--calculator container-->
-            <div class="flex justify-start mt-2"> <!--navigation container-->
+            <div class="flex justify-start mt-2" id="navigation"> <!--navigation container-->
                 <button class="w-3 h-3 rounded-full bg-red-400 ml-2"><!--close button-->
 
                 </button>
                 <button class="w-3 h-3 rounded-full bg-amber-400 ml-2"><!--minimize button-->
 
                 </button>
-                <button class="w-3 h-3 rounded-full bg-green-400 ml-2"><!--scientific toggle-->
+                <button class="w-3 h-3 rounded-full bg-green-400 ml-2" id="scientific-toggle"><!--scientific toggle-->
 
                 </button>
             </div>
-            <div class="flex justify-end items-center h-14 text-4xl px-4"> <!--result screen-->
+            <div class="w-full flex justify-end items-center h-14 text-3xl px-4 overflow-hidden" id="result">
+                <!--result screen-->
                 0
             </div>
-            <div class="w-48 flex flex-wrap divide-y divide-x divide-zinc-800"> <!--buttons container-->
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700">
-                    AC
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700">
-                    +/-
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700">
-                    %
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500">
-                    /
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    7
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    8
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    9
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500">
-                    x
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    4
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    5
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    6
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500">
-                    -
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    1
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    2
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    3
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500">
-                    +
-                </button>
-                <button class="w-1/2 h-10 flex justify-center items-center bg-zinc-500">
-                    0
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500">
-                    .
-                </button>
-                <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500">
-                    =
-                </button>
+            <div class="w-max flex flex-wrap divide-x divide-zinc-800"> <!--buttons container-->
+                <div class="w-72 flex flex-wrap divide-y divide-x divide-zinc-800" id="scientific">
+                    <!--scientific buttons container-->
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        (
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        )
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        mc
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        m+
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        m-
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        mr
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        2<sup>nd</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        x<sup>2</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        x<sup>3</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        x<sup>y</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        e<sup>x</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        10<sup>x</sup>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        <sup>1</sup>&#8725;<sub>x</sub>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        &#8730;<sub>x</sub>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        &#8731;<sub>x</sub>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        <sup>y</sup>&#8730;<sub>x</sub>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        ln
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        log<sub>10</sub>
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        x!
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        sin
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        cos
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        tan
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        e
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        EE
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        Rad
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        sinh
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        cosh
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        tanh
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        &#960;
+                    </button>
+                    <button class="w-1/6 h-10 flex justify-center items-center bg-zinc-700">
+                        Rand
+                    </button>
 
+                </div>
+                <div class="w-48 flex flex-wrap divide-y divide-x divide-zinc-800" id="buttons">
+                    <!--buttons container-->
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700 clear">
+                        AC
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700 negative">
+                        +/-
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-700 operator">
+                        %
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500 operator">
+                        /
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        7
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        8
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        9
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500 operator">
+                        x
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        4
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        5
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        6
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500 operator">
+                        -
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        1
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        2
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        3
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500 operator">
+                        +
+                    </button>
+                    <button class="w-1/2 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        0
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-zinc-500 numbers">
+                        .
+                    </button>
+                    <button class="w-1/4 h-10 flex justify-center items-center bg-amber-500 operator equals">
+                        =
+                    </button>
+
+                </div>
             </div>
 
         </div>
