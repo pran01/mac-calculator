@@ -11,7 +11,13 @@ var currentOperator:string;
 var operand1:number;
 var operand2:number;
 var pos1=0,pos2=0,pos3=0,pos4=0;
+var scientific=false;
 
+const factorial=(n:number):number=>{
+    if(n==0)
+    return 1;
+    return n*factorial(n-1);
+}
 
 const calculate=(operand:string,operator:string,result:string):string=>{
     switch(operator){
@@ -40,7 +46,12 @@ const moveCalculator=(event:any)=>{
 }
 
 const toggleScientific=()=>{
+    if(scientificPart.classList.contains("hidden"))
+        scientific=true;
+    else
+        scientific=false;
     scientificPart.classList.toggle("hidden");
+    localStorage.setItem('scientific',JSON.stringify(scientific));
 }
 
 function elementDrag(e:any) {
@@ -54,6 +65,8 @@ function elementDrag(e:any) {
     // set the calculator's new position:
     calculator.style.top = (calculator.offsetTop - pos2) + "px";
     calculator.style.left = (calculator.offsetLeft - pos1) + "px";
+    localStorage.setItem('top',calculator.style.top);
+    localStorage.setItem('left',calculator.style.left);
   }
 
   function closeDragElement() {
@@ -114,3 +127,83 @@ btns?.addEventListener("click",(event)=>{
 navigation?.addEventListener("mousedown",moveCalculator);
 
 scientificToggle?.addEventListener("click",toggleScientific);
+
+document.querySelector("#square")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${parseFloat(result.innerText)*parseFloat(result.innerText)}`;
+    }
+})
+document.querySelector("#squareroot")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${Math.sqrt(parseFloat(result.innerText))}`;
+    }
+})
+document.querySelector("#cuberoot")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${Math.cbrt(parseFloat(result.innerText))}`;
+    }
+})
+document.querySelector("#reciprocal")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${1/parseFloat(result.innerText)}`;
+    }
+})
+document.querySelector("#factorial")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${factorial(parseFloat(result.innerText))}`;
+    }
+})
+document.querySelector("#poweroften")?.addEventListener("click",()=>{
+    if(result.innerText!=="0"){
+        result.innerText=`${Math.pow(10,parseFloat(result.innerText))}`;
+    }
+})
+document.querySelector("#natural-log")?.addEventListener("click",()=>{
+        result.innerText=`${Math.log(parseFloat(result.innerText))}`;
+})
+document.querySelector("#log10")?.addEventListener("click",()=>{
+        result.innerText=`${Math.log10(parseFloat(result.innerText))}`;
+})
+document.querySelector("#sin")?.addEventListener("click",()=>{
+    result.innerText=`${Math.sin(parseFloat(result.innerText))}`;
+})
+document.querySelector("#cos")?.addEventListener("click",()=>{
+    result.innerText=`${Math.cos(parseFloat(result.innerText))}`;
+})
+document.querySelector("#tan")?.addEventListener("click",()=>{
+    result.innerText=`${Math.tan(parseFloat(result.innerText))}`;
+})
+document.querySelector("#e")?.addEventListener("click",()=>{
+    result.innerText=`${Math.E}`;
+})
+document.querySelector("#sinh")?.addEventListener("click",()=>{
+    result.innerText=`${Math.sinh(parseFloat(result.innerText))}`;
+})
+document.querySelector("#cosh")?.addEventListener("click",()=>{
+    result.innerText=`${Math.cosh(parseFloat(result.innerText))}`;
+})
+document.querySelector("#tanh")?.addEventListener("click",()=>{
+    result.innerText=`${Math.tanh(parseFloat(result.innerText))}`;
+})
+document.querySelector("#pi")?.addEventListener("click",()=>{
+    result.innerText=`${Math.PI}`;
+})
+document.querySelector("#powerofe")?.addEventListener("click",()=>{
+    result.innerText=`${Math.pow(Math.E,parseFloat(result.innerText))}`;
+})
+
+window.onload=()=>{
+    if(localStorage.getItem('scientific'))
+        scientific=JSON.parse(localStorage.getItem("scientific")||"false");
+    else
+        scientific=false;
+    if(scientific)
+        scientificPart.classList.remove("hidden");
+    else
+        scientificPart.classList.add("hidden");
+
+    if(localStorage.getItem('top') && localStorage.getItem('left')){
+        calculator.style.top=localStorage.getItem('top')||"";
+        calculator.style.left=localStorage.getItem('left')||"";
+    }
+}
